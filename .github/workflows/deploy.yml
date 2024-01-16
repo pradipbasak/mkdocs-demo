@@ -22,6 +22,6 @@ jobs:
         run: pip install mkdocs
 
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy -b gh-pages
+        run: mkdocs gh-deploy --force -b gh-pages
         env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
