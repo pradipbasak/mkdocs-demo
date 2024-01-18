@@ -2,10 +2,6 @@
 
 This is some sample text.
 
-Another sample text.    
-
-Different environments enabled.
-
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
