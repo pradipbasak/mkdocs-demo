@@ -45,24 +45,20 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Checkout gh-pages branch
+        run: git checkout -b gh-pages
+
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: build-artifacts
-          path: site
 
       - name: List current directory
         run: ls -la
 
       - name: Deploy to GitHub Pages
         run: |
-          git fetch
-          git checkout -b gh-pages
-          git checkout main -- site
-          ls -la
-          git add site
-          cp site/* .
-          git rm -rf site
+          git add .
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
         env:
