@@ -1,6 +1,7 @@
 # Welcome to MkDocs
 
 This is some sample text.
+Managed environment.
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
