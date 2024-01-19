@@ -22,7 +22,7 @@ jobs:
 
 
 
-          
+
   # dev env
   dev:
     runs-on: ubuntu-latest
@@ -36,40 +36,13 @@ jobs:
       - name: Deploy to GitHub Pages
         run: |
           pip install mkdocs
-          mkdocs gh-deploy --force -b gh-pages
+          mkdocs build
+          git checkout -b gh-pages
+          git rm -rf .
+          git checkout main -- site
+          git add site
+          cp site/* .
+          git rm -rf site
+          git push origin gh-pages
         env:
           DEV_SECRET: ${{ secrets.DEV_SECRET }}
-
-  # test env
-  test:
-    runs-on: ubuntu-latest
-    environment: TEST
-    needs: dev
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Deploy to GitHub Pages
-        run: |
-          pip install mkdocs
-          mkdocs gh-deploy --force -b gh-pages
-        env:
-          TEST_SECRET: ${{ secrets.TEST_SECRET }}
-
-  # prod env
-  prod:
-    runs-on: ubuntu-latest
-    environment: PROD
-    needs: test
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Deploy to GitHub Pages
-        run: |
-          pip install mkdocs
-          mkdocs gh-deploy --force -b gh-pages
-        env:
-          PROD_SECRET: ${{ secrets.PROD_SECRET }}
