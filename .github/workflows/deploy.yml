@@ -57,11 +57,8 @@ jobs:
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
-          git rm -rf .
-          git checkout main -- site
-          git add site
-          cp site/* .
-          git rm -rf site
+          cp -R site/* .
+          git add .
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
         env:
