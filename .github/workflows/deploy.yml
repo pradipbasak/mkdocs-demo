@@ -37,7 +37,9 @@ jobs:
         run: |
           pip install mkdocs
           mkdocs build
+          echo "files in main branch"
           git checkout -b gh-pages
+          echo "files in gh-pages branch"
           git rm -rf .
           git checkout main -- site
           git add site
