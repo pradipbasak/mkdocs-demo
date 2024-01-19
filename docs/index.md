@@ -2,6 +2,7 @@
 
 This is some sample text.
 Managed environment.
+Some sample text.
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
