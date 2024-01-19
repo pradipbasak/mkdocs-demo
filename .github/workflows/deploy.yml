@@ -39,11 +39,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: List current directory
+        run: ls -la
+
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          git checkout -b main -- site
+          git checkout main -- site
           git add site
           cp site/* .
           git rm -rf site
