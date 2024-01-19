@@ -39,7 +39,8 @@ jobs:
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          cp -r site/* .
+          mkdir -p site
+          cp -r build/site/* site/
           git add .
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
@@ -59,7 +60,8 @@ jobs:
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          cp -r site/* .
+          mkdir -p site
+          cp -r dev/site/* site/
           git add .
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
@@ -79,7 +81,8 @@ jobs:
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          cp -r site/* .
+          mkdir -p site
+          cp -r test/site/* site/
           git add .
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
