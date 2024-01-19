@@ -25,6 +25,9 @@ jobs:
       - name: Build MkDocs
         run: mkdocs build
 
+      - name: List directory
+        run: ls -la
+
 
   dev:
     runs-on: ubuntu-latest
