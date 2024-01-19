@@ -7,6 +7,7 @@ on:
 
 jobs:
 
+  # build the environment
   build:
     runs-on: ubuntu-latest
 
@@ -25,28 +26,21 @@ jobs:
       - name: Build MkDocs
         run: mkdocs build
 
-      - name: List directory
+      - name: List current directory
         run: ls -la
 
-
+  # dev env
   dev:
     runs-on: ubuntu-latest
     environment: DEV
     needs: build
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: List directory
-        run: ls -la
-
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          mkdir -p site
-          cp -r site/* site/
+          git checkout main -- docs
           git add .
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
@@ -59,15 +53,11 @@ jobs:
     needs: dev
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          mkdir -p site
-          cp -r dev/site/* site/
+          git checkout main -- docs
           git add .
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
@@ -80,15 +70,11 @@ jobs:
     needs: test
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          mkdir -p site
-          cp -r test/site/* site/
+          git checkout main -- docs
           git add .
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
