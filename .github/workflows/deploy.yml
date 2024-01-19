@@ -35,6 +35,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Debug - List files in current directory
+        run: ls -la
+
+      - name: Debug - List files in build directory
+        run: ls -la build
+
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
