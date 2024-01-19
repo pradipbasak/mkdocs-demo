@@ -35,18 +35,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Debug - List files in current directory
-        run: ls -la
-
-      - name: Debug - List files in build directory
-        run: ls -la build
-
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
           git rm -rf .
           mkdir -p site
-          cp -r build/site/* site/
+          cp -r site/* site/
           git add .
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
