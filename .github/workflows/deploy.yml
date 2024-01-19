@@ -42,11 +42,9 @@ jobs:
           git checkout -b gh-pages
           echo "files in gh-pages branch"
           ls -la
-          git rm -rf .
-          git checkout main -- site
-          git add site
           cp site/* .
-          git rm -rf site
+          echo "files within site"
+          ls -la
           git push origin gh-pages
         env:
           DEV_SECRET: ${{ secrets.DEV_SECRET }}
