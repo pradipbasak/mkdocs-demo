@@ -50,6 +50,7 @@ jobs:
           git config user.email "bsk.pradip@gmail.com"
           git config user.name "pradipbasak"
           git checkout -b gh-pages
+          git pull
           git rm -rf .
 
       - name: Download artifacts
