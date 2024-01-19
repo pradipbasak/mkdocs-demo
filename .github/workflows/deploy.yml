@@ -23,17 +23,6 @@ jobs:
       - name: Install dependencies
         run: pip install mkdocs
 
-      - name: Build MkDocs
-        run: mkdocs build
-
-      - name: List current directory
-        run: ls -la
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts
-          path: site
 
   # dev env
   dev:
@@ -45,30 +34,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Checkout gh-pages branch
-        run: |
-          git config user.email "bsk.pradip@gmail.com"
-          git config user.name "pradipbasak"
-          git checkout -b gh-pages
-          git pull origin gh-pages
-          git rm -rf .
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build-artifacts
-
-      - name: List current directory
-        run: ls -la
-
       - name: Deploy to GitHub Pages
-        run: |
-          git add .
-          git commit -m "Deploy MkDocs to GitHub Pages"
-          git push origin gh-pages
+        run: mkdocs gh-deploy --force gh-pages
         env:
           DEV_SECRET: ${{ secrets.DEV_SECRET }}
 
+  # test env
   test:
     runs-on: ubuntu-latest
     environment: TEST
@@ -79,18 +50,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to GitHub Pages
-        run: |
-          git checkout -b gh-pages
-          git rm -rf .
-          git checkout -b main -- site
-          git add site
-          cp site/* .
-          git rm -rf site
-          git commit -m "Deploy MkDocs to GitHub Pages"
-          git push origin gh-pages
+        run: mkdocs gh-deploy --force gh-pages
         env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
 
+  # prod env
   prod:
     runs-on: ubuntu-latest
     environment: PROD
@@ -101,14 +65,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to GitHub Pages
-        run: |
-          git checkout -b gh-pages
-          git rm -rf .
-          git checkout main -- site
-          git add site
-          cp site/* .
-          git rm -rf site
-          git commit -m "Deploy MkDocs to GitHub Pages"
-          git push origin gh-pages
+        run: mkdocs gh-deploy --force gh-pages
         env:
           PROD_SECRET: ${{ secrets.PROD_SECRET }}
