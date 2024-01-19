@@ -29,6 +29,12 @@ jobs:
       - name: List current directory
         run: ls -la
 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: site
+
   # dev env
   dev:
     runs-on: ubuntu-latest
@@ -38,6 +44,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
 
       - name: List current directory
         run: ls -la
