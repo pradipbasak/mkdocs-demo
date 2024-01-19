@@ -43,7 +43,7 @@ jobs:
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          git checkout main -- site
+          git checkout -b main -- site
           git add site
           cp site/* .
           git rm -rf site
