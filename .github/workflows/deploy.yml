@@ -36,6 +36,9 @@ jobs:
     needs: build
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
@@ -55,12 +58,17 @@ jobs:
     needs: dev
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          git checkout main -- docs
-          git add .
+          git checkout main -- site
+          git add site
+          cp site/* .
+          git rm -rf site
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
         env:
@@ -72,12 +80,17 @@ jobs:
     needs: test
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
       - name: Deploy to GitHub Pages
         run: |
           git checkout -b gh-pages
           git rm -rf .
-          git checkout main -- docs
-          git add .
+          git checkout main -- site
+          git add site
+          cp site/* .
+          git rm -rf site
           git commit -m "Deploy MkDocs to GitHub Pages"
           git push origin gh-pages
         env:
