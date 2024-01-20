@@ -23,44 +23,19 @@ jobs:
 
 
 
-  # dev env
-  dev:
+  # test env
+  test:
     runs-on: ubuntu-latest
-    environment: DEV
+    environment: TEST
     needs: build
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Identify Git credentials
-        run: |
-          git config user.email "bsk.pradip@gmail.com"
-          git config user.name "pradipbasak"
-
       - name: Deploy to GitHub Pages
         run: |
           pip install mkdocs
-          mkdocs build
-          echo "files in main branch"
-          ls -la
-          git add .
-          git commit -m "builded site directory"
-          git checkout -b gh-pages
-          echo "files in gh-pages branch before deleting"
-          git rm -rf .
-          echo "files in gh-pages branch after deleting"
-          ls -la
-          git add .
-          git commit -m "cleaned gh-pages branch"
-          git checkout main -- site
-          git add site
-          cp -r site/* .
-          echo "files within site"
-          git rm -rf site
-          ls -la
-          git add .
-          git commit -m "added site contents into the gh-pages branch"
-          git push -f origin gh-pages
+          mkdocs gh-deploy
         env:
-          DEV_SECRET: ${{ secrets.DEV_SECRET }}
+          TEST_SECRET: ${{ secrets.TEST_SECRET }}
