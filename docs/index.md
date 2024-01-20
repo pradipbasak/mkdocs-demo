@@ -1,7 +1,9 @@
 # Welcome to MkDocs
 
 This is some sample text.   
+
 Sample text.
+
 Another sample text.
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
