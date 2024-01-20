@@ -33,6 +33,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Identify Git credentials
+        run: |
+          git config user.email "bsk.pradip@gmail.com"
+          git config user.name "pradipbasak"
+
       - name: Deploy to GitHub Pages
         run: |
           pip install mkdocs
