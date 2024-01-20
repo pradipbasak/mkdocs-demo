@@ -40,6 +40,10 @@ jobs:
         run: |
           pip install mkdocs
           mkdocs build
+          git checkout -b test
+          git add site
+          git commit -m "added site directory to the test branch"
+          git push origin test
         env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
 
@@ -48,3 +52,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
+          publish_branch: test
+
+
+      - name: Delete Test Branch
+        run: |
+          git push origin --delete test
+          git checkout main
+          git branch -D test
