@@ -53,8 +53,6 @@ jobs:
           ls -la
           git add .
           git commit -m "cleaned gh-pages branch"
-          git checkout main
-          git checkout gh-pages
           git checkout main -- site
           git add site
           cp -r site/* .
