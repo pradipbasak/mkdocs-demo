@@ -20,10 +20,7 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Identify Git credentials
-        run: |
-          git config user.email "bsk.pradip@gmail.com"
-          git config user.name "pradipbasak"
+
 
 
 
@@ -37,6 +34,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Identify Git Credentials
+        run: |
+          git config user.email "bsk.pradip@gmail.com"
+          git config user.name "pradipbasak"
 
       - name: Build site directory
         run: |
