@@ -51,6 +51,10 @@ jobs:
           git rm -r .
           echo "files in gh-pages branch after deleting"
           ls -la
+          git add .
+          git commit -m "cleaned gh-pages branch"
+          git checkout main
+          git checkout gh-pages
           git checkout main -- site
           git add site
           cp -r site/* .
@@ -59,6 +63,6 @@ jobs:
           ls -la
           git add .
           git commit -m "added site contents into the gh-pages branch"
-          git push origin gh-pages
+          git push -f origin gh-pages
         env:
           DEV_SECRET: ${{ secrets.DEV_SECRET }}
