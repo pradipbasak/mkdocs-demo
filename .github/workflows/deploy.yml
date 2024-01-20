@@ -42,7 +42,7 @@ jobs:
           git checkout -b gh-pages
           echo "files in gh-pages branch"
           ls -la
-          cp site/* .
+          cp -r site/* .
           echo "files within site"
           ls -la
           git push origin gh-pages
