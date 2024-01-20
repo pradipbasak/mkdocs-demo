@@ -38,6 +38,12 @@ jobs:
           git config user.email "bsk.pradip@gmail.com"
           git config user.name "pradipbasak"
 
+      - name: Delete Test Branch
+        run: |
+          git push origin --delete test
+          git checkout main
+          git branch -D test
+
       - name: Build site directory
         run: |
           pip install mkdocs
@@ -55,10 +61,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
           publish_branch: test
-
-
-      - name: Delete Test Branch
-        run: |
-          git push origin --delete test
-          git checkout main
-          git branch -D test
