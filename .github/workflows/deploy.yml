@@ -33,9 +33,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Deploy to GitHub Pages
+      - name: Build site directory
         run: |
           pip install mkdocs
-          mkdocs gh-deploy --force -b gh-pages
+          mkdocs build
         env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
+
+      - name: Deploy Test site
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
