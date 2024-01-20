@@ -48,7 +48,7 @@ jobs:
           git commit -m "builded site directory"
           git checkout -b gh-pages
           echo "files in gh-pages branch before deleting"
-          git rm -r .
+          git rm -rf .
           echo "files in gh-pages branch after deleting"
           ls -la
           git add .
