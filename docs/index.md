@@ -6,6 +6,9 @@ Sample text.
 
 Another sample text.
 
+Added some text in feature#1 branch.
+
+
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
