@@ -33,6 +33,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Create CNAME file
+        run: echo "https://test.pradipbasak.github.io" > CNAME
+
       - name: Build site directory
         run: |
           pip install mkdocs
