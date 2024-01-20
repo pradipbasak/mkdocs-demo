@@ -20,6 +20,11 @@ jobs:
         with:
           python-version: 3.11
 
+      - name: Identify Git credentials
+        run: |
+          git config user.email "bsk.pradip@gmail.com"
+          git config user.name "pradipbasak"
+
 
 
 
