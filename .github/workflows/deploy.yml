@@ -65,7 +65,7 @@ jobs:
       - name: Build site directory
         run: |
           pip install mkdocs
-          mkdocs gh-deploy --force -b gh-deploy
+          mkdocs gh-deploy --force -b gh-pages
         env:
           PROD_SECRET: ${{ secrets.PROD_SECRET }}
 
