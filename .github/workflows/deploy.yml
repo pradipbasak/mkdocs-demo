@@ -57,7 +57,7 @@ jobs:
           git add site
           cp -r site/* .
           echo "files within site"
-          git rm -r site
+          git rm -rf site
           ls -la
           git add .
           git commit -m "added site contents into the gh-pages branch"
