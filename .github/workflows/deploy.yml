@@ -9,7 +9,7 @@ jobs:
 
   # build the environment
   build:
-    runs-on: linux
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
@@ -27,7 +27,7 @@ jobs:
 
   # test env
   test:
-    runs-on: linux
+    runs-on: ubuntu-latest
     environment: TEST
     needs: build
 
@@ -54,7 +54,7 @@ jobs:
 
   # prod env
   prod:
-    runs-on: linux
+    runs-on: ubuntu-latest
     environment: PROD
     needs: test
 
