@@ -1,12 +1,6 @@
 # Welcome to MkDocs
 
-This is some sample text.   
-
-Sample text.
-
-Another sample text.
-
-Added some text in feature#1 branch.
+This is some sample text.
 
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
